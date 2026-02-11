@@ -1,0 +1,258 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ZorkoIndustries.org</title>  <!-- SEO / Meta -->  <meta name="description" content="ZorkoIndustries.org — a minimal, sleek GitHub Pages site." />
+  <meta name="theme-color" content="#0f172a" />  <!-- Fonts -->  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">  <style>
+    :root {
+      --bg: #020617;
+      --bg-soft: #020617ee;
+      --card: #020617;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-2: #22d3ee;
+      --border: #1e293b;
+      --glow: rgba(56, 189, 248, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(56,189,248,0.08), transparent 40%),
+        radial-gradient(800px 400px at 90% 10%, rgba(34,211,238,0.06), transparent 45%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 880px;
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(2,6,23,0.7), rgba(2,6,23,0.9));
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 48px;
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.02) inset,
+        0 20px 60px rgba(0,0,0,0.6);
+      backdrop-filter: blur(8px);
+    }
+
+    header {
+      margin-bottom: 40px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(56,189,248,0.08);
+      border: 1px solid rgba(56,189,248,0.25);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+
+    .subtitle {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 640px;
+    }
+
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 40px 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .tile {
+      position: relative;
+      padding: 24px;
+      border-radius: 16px;
+      background: rgba(2,6,23,0.6);
+      border: 1px solid var(--border);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      overflow: hidden;
+    }
+
+    .tile::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(400px 200px at var(--x, 50%) var(--y, 0%), rgba(56,189,248,0.08), transparent 40%);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      pointer-events: none;
+    }
+
+    .tile:hover {
+      transform: translateY(-4px);
+      border-color: rgba(56,189,248,0.4);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5), 0 0 30px var(--glow);
+    }
+
+    .tile:hover::after {
+      opacity: 1;
+    }
+
+    .tile h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .tile p {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 40px;
+    }
+
+    .btn {
+      appearance: none;
+      border: 1px solid var(--border);
+      background: rgba(2,6,23,0.6);
+      color: var(--text);
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+    }
+
+    .btn.primary {
+      background: linear-gradient(180deg, rgba(56,189,248,0.15), rgba(34,211,238,0.15));
+      border-color: rgba(56,189,248,0.4);
+      color: #e0f2fe;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      border-color: rgba(56,189,248,0.5);
+    }
+
+    footer {
+      margin-top: 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .mono {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        padding: 32px 24px;
+      }
+    }
+  </style></head>
+<body>
+  <main class="container"
+    <section class="card">
+      <header>
+        <div class="badge">🚀 GitHub Pages</div>
+        <h1>ZorkoIndustries.org</h1>
+        <p class="subtitle">
+          A clean, minimal landing page running on GitHub Pages.<br />
+          Built to look sharp, load fast, and stay out of the way.
+        </p>
+      </header><div class="divider"></div>
+
+  <section class="grid">
+    <div class="tile">
+      <h3>Minimal by design</h3>
+      <p>No frameworks, no bloat. Just HTML and CSS.</p>
+    </div>
+    <div class="tile">
+      <h3>Fast & lightweight</h3>
+      <p>Loads instantly on basically anything.</p>
+    </div>
+    <div class="tile">
+      <h3>GitHub-native</h3>
+      <p>Perfect fit for GitHub Pages hosting.</p>
+    </div>
+    <div class="tile">
+      <h3>Easy to customize</h3>
+      <p>Edit one file and you’re done.</p>
+    </div>
+  </section>
+
+  <div class="actions">
+    <a class="btn primary" href="https://github.com/" target="_blank" rel="noreferrer">
+      View on GitHub
+    </a>
+    <a class="btn" href="#" onclick="alert('Replace this link with whatever you want 😈')">
+      Do something cool
+    </a>
+  </div>
+
+  <footer>
+    <span>© <span id="year"></span> ZorkoIndustries.org</span>
+    <span class="mono">.org</span>
+  </footer>
+</section>
+
+  </main>  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Fancy hover glow tracking
+    document.querySelectorAll('.tile').forEach(tile => {
+      tile.addEventListener('mousemove', e => {
+        const rect = tile.getBoundingClientRect();
+        tile.style.setProperty('--x', `${e.clientX - rect.left}px`);
+        tile.style.setProperty('--y', `${e.clientY - rect.top}px`);
+      });
+    });
+  </script></body>
+</html>
